@@ -1,0 +1,73 @@
+{% extends "Shop/base.html" %}
+
+{% block title %} Index {% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column flex-wrap">
+
+    <div class="container  justify-content-center ">
+        <form method="get" class="mb-4 d-flex flex-row justify-content-center align-items-center">
+            <div class="mb-3 ms-2">
+                <label for="price_filter" class="form-label">Filter by Price:</label>
+                <select name="price_filter" id="price_filter" class="form-select">
+                    <option value="all">All price range</option>
+                    <option value="low to high"> low to high</option>
+                    <option value="high to low"> high to low</option>
+                </select>
+            </div>
+            <div class="mb-3 ms-2">
+                <label for="availability_filter" class="form-label">Filter by Availability:</label>
+                <select name="availability_filter" id="availability_filter" class="form-select">
+                    <option value="all">All availability</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="mb-3 ms-2">
+                <label for="category_filter" class="form-label">Filter by Category:</label>
+                <select name="category_filter" id="category_filter" class="form-select">
+                    <option value="all">All Categorys</option>
+                    {% for category in categories %}
+                    <option value="{{ category.title }}">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 ms-2">
+                <label for="application_area_filter" class="form-label">Filter by Application area:</label>
+                <select name="application_area_filter" id="application_area_filter" class="form-select">
+                    <option value="all">All Application areas</option>
+                    {% for application_area in application_areas %}
+                    <option value="{{ application_area.title }}">{{ application_area.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 ms-2">
+                <label for="rating_filter" class="form-label">Filter by Rating:</label>
+                <select name="rating_filter" id="rating_filter" class="form-select">
+                    <option value="all">All rating</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                    <option value="5">5+</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary ms-2 mt-3" style="height: 40px">Apply Filter</button>
+        </form>
+    </div>
+
+    <div class="d-flex flex-wrap">
+        {% for product in products %}
+        <div style="width: 330px; height: 340px" class=" ms-2 card bg-dark text-white mb-3">
+            <p class="card-header">{{ product.name }}</p>
+            <p class="card-body">Price - {{ product.price }}</p>
+            <p class="card-body">Rating - {{ product.average_rating }}</p>
+            <p class="card-body">Category: {{ product.category.title }}</p>
+            <p class="card-footer"><a class="btn btn-primary" href="{% url 'detail' product.id %}">Click</a>
+            </p>
+            <br><br>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

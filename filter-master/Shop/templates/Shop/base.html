@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %} {% endblock %}</title>
+<style>
+  body {
+    background-color: #e3f2fd;
+    color: #212529;
+    text-align: justify;
+  }
+
+  .navbar {
+    background-color: #6c757d;
+  }
+
+  .navbar-brand {
+    color: #e3f2fd;
+  }
+
+  .nav-link {
+    color: #17a2b8;
+  }
+
+  .nav-link.active {
+    font-weight: bold;
+    color: #28a745;
+  }
+
+  .cover-container {
+    background-color: #f8f9fa;
+    padding: 4rem;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+</head>
+
+<body class="text-center text-dark bg-light">
+  <div class="cover-container bg-light p-3 mx-auto flex-column">
+    <nav class="navbar navbar-expand navbar-dark bg-primary" aria-label="Second navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand mb-2" href="{% url "index" %}">Shop</a>
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+          <ul class="d-flex navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url "index" %}">Главная</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  {% block content %}
+  {% endblock %}
+</body>
+</html>
